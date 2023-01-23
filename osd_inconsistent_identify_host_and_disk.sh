@@ -1,0 +1,1 @@
+for host in $(for osd in $(ceph health detail | grep "pg.*inconsistent" | awk '{match($0,/pg.*inconsistent.*acting.*\[(.*)\]/,a); print a[1]}' | tr , '\n'); do ceph osd find $osd | awk '{print $2}' | grep "cephosd"; done | sort | uniq | tr -d ',' | tr -d '"'); do ssh $host "dmesg -T | grep critical"; done
